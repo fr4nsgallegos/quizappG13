@@ -1,0 +1,21 @@
+import 'package:quizappg13/models/question_model.dart';
+
+class QuizBrain {
+  int questionIndex = 0;
+
+  List<QuestionModel> questionList = [
+    QuestionModel(question: "¿El hombre llego a la luna?", answer: true),
+    QuestionModel(question: "¿Has almorzado hoy?", answer: false),
+    QuestionModel(question: "Saliste ayer?", answer: false),
+    QuestionModel(question: "¿Has desayunado?", answer: true),
+    QuestionModel(question: "Sientes frio", answer: false),
+  ];
+
+  String getQuestionText() {
+    return questionList[questionIndex].question;
+  }
+
+  bool getQuestionAnswer() {
+    return questionList[questionIndex].answer;
+  }
+}
