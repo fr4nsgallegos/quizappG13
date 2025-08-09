@@ -21,6 +21,11 @@ class _HomePageState extends State<HomePage> {
       score.add(itemScore((quizBrain.questionIndex + 1).toString(), false));
       print("INCORRECTO! ");
     }
+
+    if (quizBrain.isFinishedFunc()) {
+      print("El cuestionario ha terminado");
+      return;
+    }
     quizBrain.nextQuestion();
     setState(() {});
   }
@@ -58,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 flex: 5,
                 child: Center(
                   child: Text(
-                    "${quizBrain.getQuestionText()}",
+                    "${quizBrain.questionIndex + 1}.  ${quizBrain.getQuestionText()}",
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),

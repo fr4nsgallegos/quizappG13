@@ -2,6 +2,7 @@ import 'package:quizappg13/models/question_model.dart';
 
 class QuizBrain {
   int questionIndex = 0;
+  bool isFinished = false;
 
   List<QuestionModel> questionList = [
     QuestionModel(question: "¿El hombre llego a la luna?", answer: true),
@@ -20,6 +21,14 @@ class QuizBrain {
   }
 
   void nextQuestion() {
-    questionIndex++;
+    if (questionIndex < questionList.length - 1) {
+      questionIndex++;
+    } else {
+      isFinished = true;
+    }
+  }
+
+  bool isFinishedFunc() {
+    return isFinished;
   }
 }
