@@ -18,4 +18,8 @@ class QuizBrain {
   bool getQuestionAnswer() {
     return questionList[questionIndex].answer;
   }
+
+  void nextQuestion() {
+    questionIndex++;
+  }
 }

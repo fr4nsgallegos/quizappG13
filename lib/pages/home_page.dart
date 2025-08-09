@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:quizappg13/quiz_brain.dart';
 
-class HomePage extends StatelessWidget {
-  QuizBrain quizBrain = QuizBrain();
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  QuizBrain quizBrain = QuizBrain();
+  List<Widget> score = [];
   void checkAnswer(bool userAnswer) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
 
     // CUANDO LA RESPUESTA ES CORRECTA
     if (correctAnswer == userAnswer) {
+      score.add(itemScore((quizBrain.questionIndex + 1).toString(), true));
       print(("La respuesta es correcta"));
     } else {
       // CUANDO LA RESPUES ES INCORRECTA
+      score.add(itemScore((quizBrain.questionIndex + 1).toString(), false));
       print("INCORRECTO! ");
     }
+    quizBrain.nextQuestion();
+    setState(() {});
+  }
+
+  Widget itemScore(String numerQuestion, bool isCorrect) {
+    return Row(
+      children: [
+        Text("$numerQuestion:", style: TextStyle(color: Colors.white)),
+        Icon(
+          isCorrect ? Icons.check : Icons.close,
+          color: isCorrect ? Colors.greenAccent : Colors.redAccent,
+        ),
+      ],
+    );
   }
 
   @override
@@ -70,6 +91,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: score),
             ],
           ),
         ),
