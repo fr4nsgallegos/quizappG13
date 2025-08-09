@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizappg13/main.dart';
 import 'package:quizappg13/quiz_brain.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,6 +24,38 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (quizBrain.isFinishedFunc()) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.warning, color: Colors.orange),
+                Text("Alerta"),
+              ],
+            ),
+            content: Text("Has llegado al final del formulario"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("Cancelar"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  quizBrain.restarQuizz();
+                  Navigator.pop(context);
+                  score.clear();
+                  setState(() {});
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
       print("El cuestionario ha terminado");
       return;
     }

@@ -31,4 +31,9 @@ class QuizBrain {
   bool isFinishedFunc() {
     return isFinished;
   }
+
+  void restarQuizz() {
+    questionIndex = 0;
+    isFinished = false;
+  }
 }
